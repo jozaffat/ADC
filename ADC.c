@@ -45,11 +45,11 @@ extern void Configura_Reg_ADC0(void)
     //Pag 1091 Este registro (ADCEMUX) selecciona el evento que activa la conversión (trigger)
     ADC0->EMUX  = (0x0<<0) | (0x0<<15) ; //evento de muestras
     //Pag 1129 Este registro (ADCSSMUX2) define las entradas analógicas con el canal y secuenciador seleccionado
-    ADC0->SSMUX0 = (1<<0)|(5<<4)|(7<<8)|(11<<12)|(6<<16);//1,5,7,11,6,8
+    ADC0->SSMUX0 = (1<<0)|(5<<4)|(7<<8)|(11<<12)|(6<<15);//1,5,7,11,6,8
     ADC0->SSMUX3 = (8<<0);
-    //pag 868 Este registro (ADCSSCTL2), configura el bit de control de muestreo y la interrupción
-    ADC0->SSCTL0 = (1<<2) | (1<<1) | (1<<4) | (1<<5) | (1<<10) | (1<<9) | (1<<14) | (1<<13) | (1<<18) | (1<<17) ;
-    ADC0->SSCTL3 = (1<<2) | (1<<1) ; //SAMPLES
+    
+    ADC0->SSCTL0 = (1<<1) | (1<<2) | (1<<5) | (1<<6) | (1<<9) | (1<<10) | (1<<13) | (1<<14) | (1<<17) | (1<<18) ;
+    ADC0->SSCTL3 = (1<<1) | (1<<2) ; //SAMPLES Sample is End of Sequence y  Sample Differential Input Select
     
     ADC0->IM |= (1<<2); /* Unmask ADC0 sequence 2 interrupt pag 1082*/
     //NVIC_PRI4_R = (NVIC_PRI4_R & 0xFFFFFF00) | 0x00000020;
